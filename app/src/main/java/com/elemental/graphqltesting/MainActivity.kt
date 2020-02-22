@@ -22,8 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val api=ApiService.invoke(ConnectivityInterceptorImpl(baseContext))
         val query=Queries.getUserName("auth0|5e4f941dcaf6ae0f3a4e1ec0")
-        val graphqlQuery1=GraphqlQuery(query)
-        val response1=api.getUserName(query = graphqlQuery1)
+        val response1=api.getUserName(query = query)
 
         response1.enqueue(object:Callback<Users>{
             override fun onFailure(call: Call<Users>, t: Throwable) {
@@ -39,8 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         btn_submit.setOnClickListener {
             val query=Queries.insertToDo(et_title.text.toString(),true)
-            val graphqlQuery=GraphqlQuery(query)
-            val response=api.insertTodo(query = graphqlQuery)
+            val response=api.insertTodo(query = query)
             response.enqueue(object:Callback<Response>{
                 override fun onFailure(call: Call<Response>, t: Throwable) {
                     Log.d("failure",call.toString())

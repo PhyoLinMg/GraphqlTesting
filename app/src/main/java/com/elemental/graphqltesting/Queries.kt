@@ -1,9 +1,11 @@
 package com.elemental.graphqltesting
 
+import com.elemental.graphqltesting.data.model.GraphqlQuery
+
 class Queries {
     companion object{
-        fun insertToDo(title:String,isPublic:Boolean):String{
-            return "mutation{\n" +
+        fun insertToDo(title:String,isPublic:Boolean):GraphqlQuery{
+            return GraphqlQuery("mutation{\n" +
                     "  insert_todos(objects:{title:\"$title\",is_public:$isPublic}){\n" +
                     "    affected_rows\n" +
                     "    returning{\n" +
@@ -17,15 +19,15 @@ class Queries {
                     "      }\n" +
                     "    }\n" +
                     "  }\n" +
-                    "}"
+                    "}")
         }
 
-        fun getUserName(id:String):String{
-            return "{\n" +
+        fun getUserName(id:String):GraphqlQuery{
+            return GraphqlQuery("{\n" +
                     "  users(where: {id:{_eq:\"$id\"}}){\n" +
                     "    name\n" +
                     "  }\n" +
-                    "}"
+                    "}")
         }
 
     }
